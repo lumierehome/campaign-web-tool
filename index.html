@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campaign Voter Management Tool</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Campaign Voter Management</h1>
+      <button id="open-add-voter" class="primary">+ Add voter</button>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2>Voter Database</h2>
+        <div class="filters">
+          <input id="search" type="search" placeholder="Search by name, address, phone, or email" />
+          <select id="party-filter">
+            <option value="all">All parties</option>
+          </select>
+          <select id="ward-filter">
+            <option value="all">All wards</option>
+          </select>
+          <select id="pledge-filter">
+            <option value="all">All pledge statuses</option>
+            <option value="Pledged">Pledged</option>
+            <option value="Undecided">Undecided</option>
+            <option value="Independent Target">Independent Target</option>
+            <option value="Opposed">Opposed</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table id="voter-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Ward</th>
+                <th>Party</th>
+                <th>Pledge Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Pledge Lists</h2>
+        <div class="tabs" id="pledge-tabs">
+          <button data-tab="Pledged" class="active">Pledged</button>
+          <button data-tab="Undecided">Undecided</button>
+          <button data-tab="Independent Target">Independent Targets</button>
+          <button data-tab="Opposed">Opposed</button>
+        </div>
+        <div class="bulk-actions">
+          <button id="export-selected">Export selected</button>
+          <button id="followup-selected">Plan follow-up</button>
+        </div>
+        <div class="table-wrap">
+          <table id="pledge-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" id="select-all-pledges" /></th>
+                <th>Name</th>
+                <th>Ward</th>
+                <th>Party</th>
+                <th>Collected Via</th>
+                <th>Date</th>
+                <th>GOTV Reminder</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Import Data</h2>
+        <div class="wizard">
+          <ol>
+            <li><strong>Step 1:</strong> Drag & drop CSV/Excel file.</li>
+            <li><strong>Step 2:</strong> Map your column names to voter fields.</li>
+            <li><strong>Step 3:</strong> Preview data with warnings and errors.</li>
+            <li><strong>Step 4:</strong> Confirm import into voter database.</li>
+          </ol>
+          <div class="dropzone" id="dropzone">
+            <input type="file" id="file-input" accept=".csv,.xlsx,.xls" hidden />
+            <p>Drop CSV or Excel file here, or <button id="choose-file" class="link-button">choose file</button>.</p>
+          </div>
+          <div id="import-feedback" class="import-feedback">No file imported yet.</div>
+          <button id="download-template">Download CSV template</button>
+        </div>
+      </section>
+    </main>
+
+    <aside id="detail-panel" class="detail-panel hidden">
+      <div class="detail-header">
+        <h3 id="detail-name">Voter Detail</h3>
+        <button id="close-detail">✕</button>
+      </div>
+      <div id="detail-body"></div>
+    </aside>
+
+    <dialog id="add-voter-dialog">
+      <form id="add-voter-form" method="dialog">
+        <h3>Add New Voter</h3>
+        <div class="grid">
+          <input name="name" placeholder="Name" required />
+          <input name="address" placeholder="Address" required />
+          <input name="phone" placeholder="Phone" required />
+          <input name="email" type="email" placeholder="Email" required />
+          <input name="age" type="number" min="18" placeholder="Age" required />
+          <input name="ward" placeholder="Ward" required />
+          <input name="party" placeholder="Political Party" required />
+          <select name="pledgeStatus" required>
+            <option value="Pledged">Pledged</option>
+            <option value="Undecided">Undecided</option>
+            <option value="Independent Target">Independent Target</option>
+            <option value="Opposed">Opposed</option>
+          </select>
+        </div>
+        <menu>
+          <button value="cancel">Cancel</button>
+          <button id="save-voter" value="default" class="primary">Save</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
