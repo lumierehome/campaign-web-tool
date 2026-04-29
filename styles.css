@@ -1,0 +1,60 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color-scheme: light;
+}
+body {
+  margin: 0;
+  background: #f4f6fb;
+  color: #1b2232;
+}
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: #1f3f8f;
+  color: #fff;
+}
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 8%);
+  padding: 1rem;
+}
+.filters { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: .5rem; }
+input, select, button { padding: .55rem .65rem; border-radius: 8px; border: 1px solid #ccd3e2; }
+.primary { background: #1f3f8f; color: #fff; border: none; }
+.table-wrap { overflow: auto; max-height: 360px; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { border-bottom: 1px solid #eceff5; padding: .45rem; text-align: left; }
+tr:hover { background: #f7f9ff; }
+.voter-link { color: #1f3f8f; cursor: pointer; text-decoration: underline; }
+.tabs { display: flex; gap: .4rem; margin-bottom: .5rem; }
+.tabs button.active { background: #1f3f8f; color: #fff; border-color: #1f3f8f; }
+.bulk-actions { display: flex; gap: .5rem; margin-bottom: .5rem; }
+.dropzone { border: 2px dashed #9eb2e8; border-radius: 10px; padding: 1rem; text-align: center; background: #f8faff; }
+.link-button { border: none; background: transparent; color: #1f3f8f; text-decoration: underline; cursor: pointer; padding: 0; }
+.import-feedback { margin: .75rem 0; background: #f5f7fd; border-radius: 8px; padding: .6rem; }
+.detail-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 360px;
+  max-width: 90vw;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #dde3f2;
+  box-shadow: -2px 0 10px rgb(0 0 0 / 12%);
+  padding: .9rem;
+  overflow: auto;
+}
+.hidden { display: none; }
+.detail-header { display: flex; justify-content: space-between; align-items: center; }
+.grid { display: grid; gap: .5rem; }
+menu { display: flex; justify-content: flex-end; gap: .5rem; margin-top: .8rem; }
