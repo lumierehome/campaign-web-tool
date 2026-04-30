@@ -1,0 +1,1 @@
+export default function Reports(){return <div><h2 className='text-2xl font-semibold'>Reports</h2><ul><li>Supporter summary by ward</li><li>Undecided list</li><li>Follow-up list</li><li>Volunteer task summary</li><li>Pledge status summary</li></ul></div>}
