@@ -1,0 +1,1 @@
+export default function Analytics(){return <div className='space-y-3'><h2 className='text-2xl font-semibold'>Analytics</h2><div className='rounded bg-white border p-4'><p>Polling trends (6 months), channel performance, and campaign metrics panels.</p></div></div>}

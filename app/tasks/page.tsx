@@ -1,0 +1,2 @@
+const tasks=['Call undecided voters in Ward 2','Schedule volunteer training','Prepare weekend canvass route'];
+export default function Tasks(){return <div><h2 className='text-2xl font-semibold mb-3'>Tasks</h2><ul className='rounded bg-white border p-4 space-y-2'>{tasks.map(t=><li key={t}><input type='checkbox' className='mr-2'/>{t}</li>)}</ul><p className='text-sm text-slate-600 mt-2'>AI-powered task generation placeholder.</p></div>}

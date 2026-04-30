@@ -1,0 +1,2 @@
+const efforts=[['SMS blast','Active'],['Email series','Planned'],['Town halls','In Progress'],['Social push','Active']];
+export default function Campaigns(){return <div><h2 className='text-2xl font-semibold mb-3'>Campaigns</h2><div className='rounded bg-white border p-4 space-y-2'>{efforts.map(([name,status])=><div key={name} className='flex justify-between'><span>{name}</span><span className='px-2 py-1 rounded bg-slate-100 text-xs'>{status}</span></div>)}</div></div>}
