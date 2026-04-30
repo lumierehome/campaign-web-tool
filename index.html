@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campaign Voter Management Tool</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section id="login-screen" class="login-screen">
+      <form id="login-form" class="login-card">
+        <h1>Campaign Access</h1>
+        <p>Login with role-based demo credentials.</p>
+        <input name="username" placeholder="Username" required />
+        <input name="password" type="password" placeholder="Password" required />
+        <button class="primary" type="submit">Sign in</button>
+        <small>Admin: admin/admin123 · Field: field/field123 · Volunteer: volunteer/vol123</small>
+      </form>
+    </section>
+
+    <div id="app-shell" class="hidden app-shell">
+      <aside class="sidebar card">
+        <h3>Campaign Console</h3>
+        <nav class="left-menu">
+          <button class="menu-item active">Dashboard</button>
+          <button class="menu-item">Voter Database</button>
+          <button class="menu-item">Party Management</button>
+          <button class="menu-item">Campaign Teams</button>
+          <button class="menu-item">Activity Planning</button>
+          <button class="menu-item">Reports</button>
+        </nav>
+      </aside>
+
+      <div class="content-area">
+        <header class="app-header">
+          <div>
+            <h1>Campaign Dashboard</h1>
+            <p id="session-label"></p>
+            <small id="build-version" class="build-version">Build: dev</small>
+          </div>
+          <div class="header-actions">
+            <button id="open-add-voter" class="primary" data-requires="write">+ Add voter</button>
+            <button id="logout">Logout</button>
+          </div>
+        </header>
+
+        <main class="layout">
+          <section class="card kpi-row">
+            <div><h3>Total Voters</h3><strong id="kpi-total">0</strong></div>
+            <div><h3>Pledged</h3><strong id="kpi-pledged">0</strong></div>
+            <div><h3>Undecided</h3><strong id="kpi-undecided">0</strong></div>
+            <div><h3>Independent Targets</h3><strong id="kpi-independent">0</strong></div>
+          </section>
+
+          <section class="card summary-grid">
+            <div><h2>Voter Pledge Summary</h2><ul id="pledge-summary"></ul></div>
+            <div><h2>Party Member Summary</h2><ul id="party-summary"></ul></div>
+          </section>
+
+          <section class="card">
+            <h2>Voter Database</h2>
+            <div class="filters">
+              <input id="search" type="search" placeholder="Search by voter ID, name, address, phone, email" />
+              <select id="party-filter"><option value="all">All parties</option></select>
+              <select id="ward-filter"><option value="all">All wards</option></select>
+              <select id="pledge-filter"><option value="all">All pledge statuses</option><option value="Pledged">Pledged</option><option value="Undecided">Undecided</option><option value="Independent Target">Independent Target</option><option value="Opposed">Opposed</option></select>
+            </div>
+            <div class="table-wrap"><table id="voter-table"><thead><tr><th>Voter ID</th><th>Name</th><th>Address</th><th>Phone</th><th>Email</th><th>Age</th><th>Ward</th><th>Party</th><th>Pledge Status</th></tr></thead><tbody></tbody></table></div>
+          </section>
+
+          <section class="card">
+            <h2>Pledge Lists</h2>
+            <div class="tabs" id="pledge-tabs"><button data-tab="Pledged" class="active">Pledged</button><button data-tab="Undecided">Undecided</button><button data-tab="Independent Target">Independent Targets</button><button data-tab="Opposed">Opposed</button></div>
+            <div class="bulk-actions"><button id="export-selected">Export selected</button><button id="followup-selected" data-requires="write">Plan follow-up</button></div>
+            <div class="table-wrap"><table id="pledge-table"><thead><tr><th><input type="checkbox" id="select-all-pledges" /></th><th>Voter ID</th><th>Name</th><th>Ward</th><th>Party</th><th>Collected Via</th><th>Date</th><th>GOTV Reminder</th></tr></thead><tbody></tbody></table></div>
+          </section>
+
+          <section class="card"><h2>Campaign Teams</h2><div id="teams-list" class="split-list"></div></section>
+          <section class="card"><h2>Campaign Activity Planning & Management</h2><div id="activities-list" class="split-list"></div></section>
+        </main>
+      </div>
+    </div>
+
+    <aside id="detail-panel" class="detail-panel hidden"><div class="detail-header"><h3 id="detail-name">Voter Detail</h3><button id="close-detail">Close ✕</button></div><div id="detail-body"></div></aside>
+
+    <dialog id="add-voter-dialog"><form id="add-voter-form" method="dialog"><h3>Add New Voter</h3><div class="grid"><input name="name" placeholder="Name" required /><input name="address" placeholder="Address" required /><input name="phone" placeholder="Phone" required /><input name="email" type="email" placeholder="Email" required /><input name="age" type="number" min="18" placeholder="Age" required /><input name="ward" placeholder="Ward" required /><select name="party" id="add-party-select" required></select><select name="pledgeStatus" required><option value="Pledged">Pledged</option><option value="Undecided">Undecided</option><option value="Independent Target">Independent Target</option><option value="Opposed">Opposed</option></select></div><details><summary>Import Data</summary><div class="wizard"><ol><li><strong>Step 1:</strong> Drag & drop CSV/Excel file.</li><li><strong>Step 2:</strong> Map columns.</li><li><strong>Step 3:</strong> Preview with warnings/errors.</li><li><strong>Step 4:</strong> Confirm import.</li></ol><div class="dropzone" id="dropzone"><input type="file" id="file-input" accept=".csv,.xlsx,.xls" hidden /><p>Drop file or <button id="choose-file" class="link-button">choose file</button>.</p></div><div id="import-feedback" class="import-feedback">No file imported yet.</div><button id="download-template">Download CSV template</button></div></details><menu><button value="cancel">Cancel</button><button class="primary" value="default">Save</button></menu></form></dialog>
+
+    <dialog id="party-dialog"><form id="party-form" method="dialog"><h3>Manage Political Parties</h3><div class="grid"><input name="partyName" placeholder="Party name" required /><input name="partyColor" type="color" value="#334155" required /></div><menu><button value="cancel">Cancel</button><button class="primary" data-requires="write" value="default">Add Party</button></menu></form><div id="party-list"></div></dialog>
+    <button id="open-party-manager" class="floating" data-requires="write">Manage Parties</button>
+
+    <script src="app.js"></script>
+  </body>
+</html>
