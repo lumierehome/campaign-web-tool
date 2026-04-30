@@ -1,1 +1,2 @@
-export default function NewVoter(){return <div><h2 className='text-2xl font-semibold'>New Voter</h2></div>}
+'use client';
+export default function NewVoter(){return <div className='max-w-xl space-y-3'><h2 className='text-2xl font-semibold'>New Voter</h2><form className='grid gap-2 rounded bg-white border p-4'><input className='border p-2 rounded' placeholder='Full name'/><input className='border p-2 rounded' placeholder='National ID'/><input className='border p-2 rounded' placeholder='Phone'/><input className='border p-2 rounded' placeholder='Ward'/><button type='button' className='rounded bg-slate-900 text-white px-3 py-2'>Create voter (UI stub)</button></form></div>}

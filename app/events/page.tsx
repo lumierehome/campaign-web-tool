@@ -1,1 +1,2 @@
-export default function Events(){return <div><h2 className='text-2xl font-semibold'>Events</h2></div>}
+import Link from 'next/link'; import { seed } from '@/lib/mock-data';
+export default function Events(){return <div className='space-y-3'><div className='flex justify-between'><h2 className='text-2xl font-semibold'>Events</h2><Link href='/events/new' className='px-3 py-2 rounded bg-slate-900 text-white'>+ New event</Link></div><ul className='rounded bg-white border p-4 space-y-2'>{seed.events.map(e=><li key={e.id}>{e.title} · {e.event_type}</li>)}</ul></div>}

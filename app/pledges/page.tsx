@@ -1,1 +1,2 @@
-export default function Pledges(){return <div><h2 className='text-2xl font-semibold'>Pledges</h2></div>}
+import Link from 'next/link'; import { seed } from '@/lib/mock-data';
+export default function Pledges(){return <div className='space-y-3'><div className='flex justify-between'><h2 className='text-2xl font-semibold'>Pledges</h2><Link href='/pledges/new' className='px-3 py-2 rounded bg-slate-900 text-white'>+ New pledge</Link></div><ul className='rounded bg-white border p-4 space-y-2'>{seed.pledges.map(p=><li key={p.id}>{p.id} · {p.pledge_type} · {p.status}</li>)}</ul></div>}
