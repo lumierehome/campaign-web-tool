@@ -2,12 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base { body { @apply bg-slate-100 text-slate-900 antialiased; } }
+@layer base {
+  :root {
+    --campaign-navy: #102451;
+    --campaign-navy-soft: #1d3468;
+    --campaign-red: #ee2f32;
+  }
+
+  body {
+    @apply bg-[#f4f6fa] text-slate-950 antialiased;
+  }
+}
+
 @layer components {
-  .hq-shell { @apply min-h-screen md:grid md:grid-cols-[280px_1fr]; }
-  .hq-sidebar { @apply bg-[#0f2454] text-white flex flex-col; }
-  .hq-nav { @apply px-3 py-2 rounded-xl text-slate-200 hover:bg-[#22386b] transition block; }
-  .hq-nav.active { @apply bg-[#22386b] text-white font-medium; }
-  .hq-card { @apply rounded-2xl border border-slate-200 bg-white shadow-sm p-5; }
-  .hq-title { @apply text-5xl font-semibold tracking-tight text-slate-900; font-family: Georgia, serif; }
+  .hq-shell {
+    @apply min-h-screen bg-[#f4f6fa] md:grid md:grid-cols-[280px_1fr];
+  }
+
+  .hq-sidebar {
+    @apply flex min-h-screen flex-col bg-[var(--campaign-navy)] text-white shadow-2xl shadow-slate-900/20;
+  }
+
+  .hq-brand-mark {
+    @apply grid h-11 w-11 place-items-center rounded-2xl bg-[var(--campaign-red)] text-xl font-bold shadow-lg shadow-red-950/25;
+  }
+
+  .hq-nav {
+    @apply flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-semibold text-slate-300 transition hover:bg-white/10 hover:text-white;
+  }
+
+  .hq-nav.active {
+    @apply bg-[#22386b] text-white shadow-inner;
+  }
+
+  .hq-nav-dot {
+    @apply ml-auto h-2 w-2 rounded-full bg-[var(--campaign-red)];
+  }
+
+  .hq-card {
+    @apply rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_2px_10px_rgba(15,23,42,0.08)];
+  }
+
+  .hq-title {
+    @apply text-4xl font-semibold tracking-tight text-slate-950 md:text-5xl;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  .metric-card {
+    @apply relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-7 shadow-[0_2px_10px_rgba(15,23,42,0.08)];
+  }
+
+  .metric-icon {
+    @apply absolute right-7 top-7 grid h-12 w-12 place-items-center rounded-xl text-xl text-white shadow-lg;
+  }
+
+  .soft-input {
+    @apply rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100;
+  }
+
+  .status-pill {
+    @apply inline-flex rounded-full px-3 py-1 text-xs font-semibold;
+  }
 }
